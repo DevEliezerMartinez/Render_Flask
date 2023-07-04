@@ -1,7 +1,5 @@
-from flask import Flask, render_template, Response, request, jsonify
-import zmq
-import base64
-import cv2
+from flask import Flask, render_template
+
 
 app = Flask(__name__)
 
