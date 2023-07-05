@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script defer src="{{ url_for('static',filename='scripts/script.js') }}"> </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Mono&family=VT323&display=swap" rel="stylesheet">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+    <title>Vista de Teleoperación</title>
+    </head>
+    <body>
+        <label class="switch" id="label" onclick="size()">
+            <input type="checkbox" class="checkbox">
+            <div class="slider"></div>
+        </label>
+        <div class="container_video">
+            <img class="video_size size" id="trans" src="{{ url_for('video_feed') }}" alt="Webcam" style="">
+            <!--<iframe width="1280" autoplay="autoplay" height="720" src="{{ url_for('static',filename='/output.mp4') }}" frameborder="0" allowfullscreen></iframe>-->
+        </div>
+        <div class="overlay" >
+            <div class="wheel">
+                <img
+                src="{{ url_for('static',filename='steering-wheel.svg') }}"
+                alt="Rotating Image"
+                className='wheel'/>
+            </div>
+            <div class="velocidad" >
+                Velocidad <span class="speed" id='speed'>0</span> Km/h
+                <br />
+                Gear: <span class="gear" id="gear">0</span>
+            </div>
+            <div class="info" id="bitrate-info"></div>
+        </div>
+    </body>
+</html>

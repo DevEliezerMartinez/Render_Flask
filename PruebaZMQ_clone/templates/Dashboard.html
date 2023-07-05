@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard-ArmoredMEX</title>
+    <link rel="shortcut icon" href= "{{ url_for('static',filename='./img/favicon.ico') }}" type="image/x-icon">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/Dashboard.css') }}">
+
+  </head>
+  <body>
+    <header class="floating_header">
+      <div class="left_header">
+        <img src= "{{ url_for('static',filename='./img/user.jpg') }}" alt="user image" />
+        <p>Bienvenido Javier</p>
+      </div>
+
+      <section class="menu right_header">
+        <div class="fecha">
+          <span id="fecha_span">Fecha</span>
+        </div>
+        <span id="hora_span">Hora</span>
+      </section>
+    </header>
+    <aside class="floating_aside">
+      <img
+        src="{{ url_for('static',filename='./img/MainLogoArmored.png') }}"
+        alt="logo MainLogoArmored"
+        id="MainLogoArmored"
+      />
+      <div class="nuevo">
+        <img src="{{ url_for('static',filename='./img/new.svg') }}" alt="nuevo svg" />
+        <span>Nuevo</span>
+      </div>
+
+      <div class="menu_aside">
+        <div class="container_item_menu">
+          <img  src="{{ url_for('static',filename='./img/dashboard.svg') }}" alt="dashboard svg" />
+          <p>WorkStation</p>
+        </div>
+        <div class="container_item_menu">
+          <img  src="{{ url_for('static',filename='./img/graphic.svg') }}" alt="graphic svg" />
+          <p>Actividad</p>
+        </div>
+        
+        <div class="container_item_menu">
+          <img  src="{{ url_for('static',filename='./img/dev.svg') }}"" alt="Configuración svg" />
+          <p>Configuración</p>
+        </div>
+        <div class="container_item_menu">
+            <img src="{{ url_for('static',filename='./img/log-out.svg') }}" id="log_out" alt="Configuración svg" />
+            <a href="/Login" id="Log_out">Cerrar sesion</a>
+          </div>
+       
+      </div>
+    </aside>
+    <main>
+      <h1>Unidades disponibles</h1>
+      <div class="container_cards">
+        <div class="card">
+          <div class="card_top">
+            <img src="{{ url_for('static',filename='./img/yukon.png') }}" alt="suburban img" />
+          </div>
+          <div class="card_bottom">
+            <div class="status_red"></div>
+            <p>Yukon GMC</p>
+            <div class="location">
+              <img src="{{ url_for('static',filename='./img/map.svg') }}" alt="map marker" />
+              <p>San Diego USA</p>
+            </div>
+            <a href="/Workspace" class="nuevo"> Operar </a>
+          </div>
+        </div>
+
+        <div class="card">
+            <div class="card_top">
+              <img src="{{ url_for('static',filename='./img/suburban_car.png') }}" alt="suburban img" />
+            </div>
+            <div class="card_bottom">
+              <div class="status"></div>
+              <p>Suburban </p>
+              <div class="location">
+                <img src="{{ url_for('static',filename='./img/map.svg') }}" alt="map marker" />
+                <p>San Diego USA</p>
+              </div>
+              <a href="/Workspace" class="nuevo"> Operar </a>
+            </div>
+          </div>
+        <div class="card">
+            <div class="card_top">
+              <img src="{{ url_for('static',filename='./img/cherokee.png') }}" alt="map marker" />
+            </div>
+            <div class="card_bottom">
+              <div class="status_red"></div>
+              <p>Yukon GMC</p>
+              <div class="location">
+                <img src="{{ url_for('static',filename='./img/map.svg') }}" alt="map marker" />
+                <p>San Diego USA</p>
+              </div>
+              <a href="/Workspace" class="nuevo"> Operar </a>
+            </div>
+          </div>
+
+          
+      </div>
+    </main>
+  </body>
+
+ <script>
+
+let spanElement = document.getElementById("fecha_span");
+let fechaActual = new Date();
+let dia = fechaActual.getDate();
+if (dia < 10) {
+  dia = "0" + dia;
+}
+let mes = fechaActual.getMonth() + 1;
+if (mes < 10) {
+  mes = "0" + mes;
+}
+let anio = fechaActual.getFullYear().toString().slice(-2);
+let formatoFecha = dia + "/" + mes + "/" + anio;
+spanElement.textContent = formatoFecha;
+
+// hora
+let spanElementHora = document.getElementById("hora_span");
+
+function agregarCero(num) {
+  return num < 10 ? "0" + num : num;
+}
+
+function actualizarHora() {
+  let fechaActual = new Date();
+
+  let horas = agregarCero(fechaActual.getHours());
+  let minutos = agregarCero(fechaActual.getMinutes());
+
+  let formatoHora = horas + ":" + minutos;
+
+  spanElementHora.textContent = formatoHora;
+}
+
+actualizarHora();
+
+setInterval(actualizarHora, 60000);
+
+ </script>
+</html>

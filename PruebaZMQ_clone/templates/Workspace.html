@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WorkSpace-Video</title>
+    <script defer src="{{ url_for('static',filename='scripts/script.js') }}"> </script> 
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static',filename='./img/favicon.ico') }}"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static',filename='styles/Workspace.css') }}"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Mulish&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="floating_header">
+      <div class="left_header">
+        <a href="/Dashboard">
+          <img src="{{ url_for('static',filename='./img/mainLogoArmored.png') }}" alt=""
+        /></a>
+      </div>
+
+      <section class="menu right_header">
+        <p>Bienvenido Javier</p>
+      </section>
+    </header>
+
+    <main>
+      <div class="switch">
+        <label class="switch">
+          <input type="checkbox" onclick="Fullscreen()" />
+          <span class="slider"></span>
+          <p>FullScreen</p>
+        </label>
+      </div>
+      <div class="transmision" id="imagen_video">
+        <img src="{{ url_for('video_feed') }}" alt="" />
+      </div>
+      <div class="tablero">
+        <div class="progress">
+          <div class="progress-value"></div>
+        </div>
+        <span id="speed">0: Km/h</span>
+      </div>
+
+      <div class="start-stop">
+        <a href="#" class="buttonstart">Start</a>
+      </div>
+      <div class="leds">
+        <div class="container">
+          <div class="led-box">
+            <div class="led-green"></div>
+            <div class="led-green"></div>
+            <div class="led-green"></div>
+            <div class="led-green"></div>
+            <div class="led-green"></div>
+            <div class="led-green"></div>
+            <div class="led-yellow"></div>
+            <div class="led-yellow"></div>
+            <div class="led-yellow"></div>
+            <div class="led-yellow"></div>
+            <div class="led-red"></div>
+            <div class="led-red"></div>
+            <div class="led-red"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gear">
+        <div class="gear_info">
+          <p>1</p>
+          <div class="aux">
+            <img id="shifter" src="{{ url_for('static',filename='./img/gearshift-svgrepo-com.svg') }}" alt="" />
+            <span>Gear</span>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+  <script>
+    function Fullscreen() {
+      let element = document.getElementById("imagen_video");
+      element.classList.toggle("full");
+      console.log("click");
+    }
+
+    function giro(n) {
+      var elemento = document.querySelector(".progress-value");
+      elemento.style.width = n + "%";
+    }
+  </script>
+</html>
